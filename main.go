@@ -43,7 +43,7 @@ func savePNG(imagePath string, img image.Image) error {
 
 func run() error {
 	if len(os.Args) == 1 {
-		return fmt.Errorf("usage: %s <filename> [output]\n", os.Args[0])
+		return fmt.Errorf("usage: %s <filename> [output]", os.Args[0])
 	}
 
 	// Read input image
@@ -53,11 +53,8 @@ func run() error {
 		return err
 	}
 
-	// Get dimensions of image
-	bounds := inputImg.Bounds()
-	width := bounds.Dx()
-	height := bounds.Dy()
-	fmt.Printf("Dimensions: %d x %d\n", width, height)
+	// Convert to greyscale
+	outputImg := greyscale(inputImg)
 
 	outputPath := fmt.Sprintf("%v-output.png", time.Now().Format("2006-01-02-150405"))
 	if len(os.Args) > 2 {
@@ -65,7 +62,7 @@ func run() error {
 	}
 
 	// Reencode image as png
-	err = savePNG(outputPath, inputImg)
+	err = savePNG(outputPath, outputImg)
 
 	return err
 
