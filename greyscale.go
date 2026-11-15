@@ -8,11 +8,9 @@ import (
 func greyscale(img image.Image) *image.Gray {
 	greyImg := image.NewGray(img.Bounds())
 	bounds := img.Bounds()
-	width := bounds.Dx()
-	height := bounds.Dy()
 
-	for x := range width {
-		for y := range height {
+	for y := bounds.Min.Y; y < bounds.Max.Y; y += 1 {
+		for x := bounds.Min.X; x < bounds.Max.X; x += 1 {
 			pixel := img.At(x, y)
 			greyPix := color.GrayModel.Convert(pixel)
 			greyImg.Set(x, y, greyPix)
