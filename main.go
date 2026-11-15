@@ -55,8 +55,8 @@ func run() error {
 
 	// Convert image
 	greyImg := greyscale(inputImg)
-	threshold := mean_threshold(greyImg)
-	outputImg := threshold_dither(greyImg, threshold)
+	threshold := meanThreshold(greyImg)
+	outputImg := thresholdDither(greyImg, threshold)
 
 	outputPath := fmt.Sprintf("%v-output.png", time.Now().Format("2006-01-02-150405"))
 	if len(os.Args) > 2 {

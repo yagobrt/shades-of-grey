@@ -11,7 +11,7 @@ var BLACK = color.Gray{0}
 var WHITE = color.Gray{255}
 
 // Turn white every pixel with brightness above the threshold, turn black the rest
-func threshold_dither(img *image.Gray, threshold uint8) *image.Gray {
+func thresholdDither(img *image.Gray, threshold uint8) *image.Gray {
 	bwImg := image.NewGray(img.Bounds())
 	bounds := img.Bounds()
 
@@ -29,7 +29,7 @@ func threshold_dither(img *image.Gray, threshold uint8) *image.Gray {
 }
 
 // Calculate the threshold for the image based on the average brightness
-func mean_threshold(img *image.Gray) uint8 {
+func meanThreshold(img *image.Gray) uint8 {
 	bounds := img.Bounds()
 	sum := 0
 
